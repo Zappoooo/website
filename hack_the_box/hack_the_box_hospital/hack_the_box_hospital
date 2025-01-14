@@ -1,1 +1,201 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Project | Hack The Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            color: #aaa;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #00bcd4;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        section h2 {
+            color: #00bcd4;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #aaa;
+        }
+        .toc a {
+            display: block;
+            margin-bottom: 10px;
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital Project</h1>
+        <p>Hack The Box | Penetration Testing Report</p>
+    </header>
+    <nav>
+        <a href="../../index.html">About Me</a>
+        <a href="../../projects.html">Projects</a>
+        <a href="../../certifications.html">Certifications</a>
+        <a href="../../contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Table of Contents</h2>
+        <div class="toc">
+            <a href="#introduction">1. Introduction</a>
+            <a href="#objectives">1.1 Objectives</a>
+            <a href="#penetration-testing">2. Penetration Testing</a>
+            <a href="#scanning">2.1 Scanning</a>
+            <a href="#exploitation">2.2 Exploitation</a>
+            <a href="#post-exploitation">2.3 Post Exploitation</a>
+            <a href="#recommendations">2.4 Recommendations</a>
+        </div>
+    </section>
+    <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>
+            This project involves conducting penetration testing on the "Hospital" machine provided by Hack The Box. The machine is a medium-difficulty Windows system hosting an Active Directory environment, a web server, and a RoundCube instance.
+        </p>
+    </section>
+    <section id="objectives">
+        <h2>1.1 Objectives</h2>
+        <ul>
+            <li>Gain initial access by exploiting vulnerabilities and misconfigurations.</li>
+            <li>Escalate privileges to administrative control.</li>
+            <li>Retrieve sensitive data to demonstrate the impact of exploitation.</li>
+            <li>Document findings and provide actionable recommendations.</li>
+        </ul>
+    </section>
+    <section id="penetration-testing">
+        <h2>2. Penetration Testing</h2>
+        <p>This section details the practical steps taken during the penetration testing process, using tools like Nmap, Burp Suite, and Weevely.</p>
+        <p>In this chapter, the project’s practical phase begins, outlining the tools and techniques used for the penetration test. The experiment will be conducted using a VirtualBox virtual machine running Kali Linux. The first step involves launching the "Hospital" machine from Hack The Box, which provides the initial crucial information: the IP address <code> 10.10.11.241</code>. </p>
+        <img src="1.png" alt="first" width="600">
+    </section>
+    <section id="scanning">
+        <h2>2.1 Scanning</h2>
+        <p>
+            Initial scanning with Nmap identified open ports on the target system, including ports 22 (SSH), 443 (HTTPS), and 8080 (HTTP). Further exploration revealed valuable entry points, including a file upload functionality on the web application.
+        </p>
+        <img src="2.png" alt="first" width="600">
+        <p> Accessing the site <code>https://10.10.11.241</code> in the browser will open this window.</p>
+        <img src="3.png" alt="first" width="600">
+        <p>Although the IP address alone is not useful without credentials, Nmap reveals the HTTP port 8080. By accessing <code>http://10.10.11.241:8080/</code>, we discover a new page that provides more valuable information for the penetration test.<p>
+        <img src="4.png" alt="first" width="600">
+        <p>From this page, we can attempt various credentials to test their validity or, more effectively, use the screen to create a new account.</p>
+        <img src="5.png" alt="first" width="600">
+        <p>By uploading a file, we can explore the directory where the uploads are stored, which could reveal further vulnerabilities or sensitive information. This step is crucial for expanding our access and understanding of the system.</p>
+        <img src="6.png" alt="first" width="600">
+        <p>
+Next, we'll intercept the file upload request using Burp Suite and use Intruder to iterate through common PHP extensions in an attempt to bypass the filters. Burp Suite captures the upload, and the results are displayed accordingly.</p>
+        <img src="7.png" alt="first" width="600">
+            <p>Using a wordlist with common PHP extensions, we got that <code>.phar</code> file can be uploaded, providing a valuable opportunity.</p>
+        <img src="8.png" alt="first" width="600">
+    </section>
+    <section id="exploitation">
+        <h2>2.2 Exploitation</h2>
+        <p>
+            Exploitation focused on leveraging the file upload vulnerability to execute arbitrary PHP code. Using Weevely, a backdoor was created and uploaded to the server, enabling a reverse shell connection.
+        </p>
+        <p>Privilege escalation was achieved by exploiting a known vulnerability in the kernel <code>(CVE-2023-2640)</code>, granting root access to the system.
+        </p>
+        <p>By uploading a .phar file to the /uploads directory, we identify a method to gain access to the system. Using Weevely, a web shell management tool, we first create an agent, allowing us to remotely interact with the web server. From there, we can execute commands, explore files, and identify vulnerabilities, all while maintaining stealth to ensure our actions align with ethical penetration testing practices. After creating the backdoor, we can access it by using the command provided. This allows us to interact with the web server remotely through the uploaded file.</p>
+        <img src="17.png" alt="first" width="600">
+        <img src="9.png" alt="first" width="600">
+        <p> Using Weevely, we create our "davide.phar" agent and upload it to the hospital server. To gain a reverse shell, we exploit Netcat, which listens on port 443. By executing the provided code, which uses <code>/bin/bash</code> to establish a reverse shell, we receive a connection request on Netcat, allowing us to access the system as "www-data."</p>
+        <img src="10.png" alt="first" width="600">
+        <p>To gather valuable information about the system, such as potential vulnerabilities, we will use the <code> uname -a </code>.</p>
+        <img src="11.png" alt="first" width="600">
+        <p>We observe that the kernel in use is version 5.19.0-35-generic, dated February 3, 2023, indicating it is outdated. A quick internet search reveals vulnerabilities associated with this kernel version. Notably, a local privilege escalation vulnerability in Ubuntu <code>(CVE-2023-2640-CVE2023-32629)</code> is tied to OverlayFS, which allows a user with limited privileges to gain root access. To exploit this, we simply need to download the exploit and set up an HTTP server listening on port 9000.</p>
+        <img src="12.png" alt="first" width="600">
+        <p>After setting up the HTTP server, we will use wget to download the exploit.</p>
+        <img src="13.png" alt="first" width="600">
+        <p>We observe that our server receives a connection request, and by running the exploit, we can gain root privileges.</p>
+        <img src="14.png" alt="first" width="600">
+        <p>By executing the command <code>python3 -c 'import pty;pty.spawn("bin/bash")'</code>, we will successfully gain root privileges.</p>
+        <img src="15.png" alt="first" width="600">
+        <p>With root privileges, we can examine the <code>/etc/shadow</code> file for credentials, potentially granting us access to other parts of the server.</p>
+        <img src="16.png" alt="first" width="600">
+        <p>As evident, we have obtained Dr. Williams' hash, which we proceed to crack. To do this, we save the hash in a file and use Hashcat for the cracking process.</p>
+        <img src="18.png" alt="first" width="600">
+        <p>By successfully cracking Dr. Williams' password: <code>qwe123!@#</code>, we can revisit the site <code>http://10.10.11.241</code>, the Roundcube email interface we previously observed, and attempt to log in using the obtained credentials. The credentials work, granting us access to Dr. Williams' email, where we can view a particularly interesting email from Dr. Brown.</p>
+        <img src="19.png" alt="first" width="600">
+        <p>In the email, we notice something interesting: Dr. Brown is waiting for a file with the .eps extension from us. Another key detail is the mention of GhostScript, an interpreter for the PostScript language and PDF file format, commonly used for viewing and printing documents. Upon investigation, we discover a vulnerability in GhostScript—CVE-2023-36664—related to command injection in .eps files. We also find proof-of-concept code related to this vulnerability. Using this exploit, we generate a malicious .eps file.</p>
+        <img src="20.png" alt="first" width="600">
+        <p>After setting up the server to listen, I returned to RoundCube and composed an email to drbrown@hospital.htb with the malicious .eps file attached.</p>
+        <img src="21.png" alt="first" width="600">
+        <p>This will allow us to obtain a reverse shell. By inspecting the listening server, we can see that we have established a connection as drbrown.</p>
+        <img src="22.png" alt="first" width="600">
+        <p>Logged in as drbrown, we inspect the contents of this directory to identify its elements, focusing on the ghostscript.bat file. By examining the file's contents, we can determine if it holds anything useful.</p>
+        <img src="23.png" alt="first" width="600">
+    </section>
+    <section id="post-exploitation">
+        <h2>2.3 Post Exploitation</h2>
+        <p>
+            After gaining root access, sensitive files such as <code>/etc/shadow</code> were analyzed. Credentials were cracked using Hashcat, allowing further access to internal systems.
+        </p>
+        <p>From the ghostscript.bat file, we obtain Dr. Brown's password: <code>'chr!$br0wn'</code>. With this information, we use Evil-WinRM, a tool for Windows remote management, to establish a connection to Dr. Brown's machine using his username and password.</p>
+        <img src="24.png" alt="first" width="600">
+        <p>After logging into the drbrown machine, we use the dir command to display the files and directories in the current directory on the remote machine.</p>
+        <img src="25.png" alt="first" width="600">
+        <p>Afterward, we navigate to the xampp and htdocs directories. From there, we attempt to load our .php file to gain a reverse shell by setting up a server listening on port 8001.</p>
+        <img src="26.png" alt="first" width="600">
+        <p>This allows us to obtain administrator privileges.</p>
+        <img src="27.png" alt="first" width="300">
+    </section>
+    <section id="recommendations">
+        <h2>2.4 Recommendations</h2>
+        <p>
+            To secure the system, it is essential to:
+        </p>
+        <ul>
+            <li>Update the kernel and all software to their latest versions.</li>
+            <li>Implement stricter file upload validations to prevent PHP execution.</li>
+            <li>Enforce strong password policies and regularly rotate credentials.</li>
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
