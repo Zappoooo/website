@@ -76,6 +76,68 @@
             background-color: #333;
             color: #aaa;
         }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #00bcd4;
+            top: 0;
+            bottom: 0;
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .timeline-item {
+            padding: 15px;
+            position: relative;
+            background: white;
+            border-radius: 6px;
+            width: 40%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9em;
+        }
+        .timeline-item.left {
+            left: 6%;
+        }
+        .timeline-item.right {
+            left: 50%;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #00bcd4;
+            top: 15px;
+            right: -8px;
+        }
+        .timeline-item.left::before {
+            left: -8px;
+        }
+        .timeline-item h3 {
+            margin: 0 0 10px;
+            color: #00bcd4;
+        }
+        .timeline-item p {
+            margin: 0;
+        }
+        .timeline-date {
+            position: absolute;
+            top: -20px; 
+            left: 10px; 
+            color: #00bcd4;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .timeline-item.right .timeline-date {
+            left: auto;
+            right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -93,39 +155,23 @@
         <p>That's my <a href="https://wallet.iq4.com/user/dbattilocchio@saintpeters.edu" target="_blank">wallet</a> if you want to see my skills</p>
     </section>
     <section>
-        <h2>Certifications</h2>
-        
-        <div id="generalProjects">
-            <!-- This is where all general projects will appear -->
+        <h2>Certifications and Educations </h2>
+        <div class="timeline">
+        <div class="timeline-item left">
+            <div class="timeline-date left">March 2025</div>
+            <h3>Master in Cyber Security at Saint Peter's University</h3>
         </div>
-        
-        <div id="Master">
-            <p>Graduated in march 2025 in Cyber Security at Saint Peter's University.</p>
+        <div class="timeline-item right">
+            <div class="timeline-date right">February 2025</div>
+            <h3>CEH Certified Ethical Hacker</h3>
         </div>
-        <div id="CEH Certifications">
-            <p>Check out my CEH Certification. </p>
-        </div>
-    </section>
+        <div class="timeline-item left">
+            <div class="timeline-date left">March 2023</div>
+            <h3>Bachelor's In Computer Science at Universita degli studi dell'Insubria</h3>
+        </section>
     <footer>
         <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
     </footer>
 
-    <script>
-        // Fetch and display General Projects
-        const generalProjectsContainer = document.getElementById('generalProjects');
-        const generalProjectsDir = './projects/general/uploads/';
-
-        fetch(generalProjectsDir)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(file => {
-                    const projectItem = document.createElement('div');
-                    projectItem.className = 'project-item';
-                    projectItem.innerHTML = `<h3>${file.name}</h3><p>Click <a href="${generalProjectsDir}${file.name}" target="_blank">here</a> to view details.</p>`;
-                    generalProjectsContainer.appendChild(projectItem);
-                });
-            });
-    </script>
 </body>
 </html>
-
