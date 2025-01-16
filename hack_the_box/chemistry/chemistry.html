@@ -1,1 +1,147 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Project | Hack The Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            color: #aaa;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #00bcd4;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        section h2 {
+            color: #00bcd4;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #aaa;
+        }
+        .toc a {
+            display: block;
+            margin-bottom: 10px;
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chemistry</h1>
+        <p>Hack The Box | Penetration Testing Report</p>
+    </header>
+    <nav>
+        <a href="../../index.html">About Me</a>
+        <a href="../../projects.html">Projects</a>
+        <a href="../../certifications.html">Certifications</a>
+        <a href="../../contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Table of Contents</h2>
+        <div class="toc">
+            <a href="#introduction">1. Introduction</a>
+            <a href="#user">2. User flag</a>
+            <a href="#root">3. Root flag</a>
+        </div>
+    </section>
+    <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>In this project, we will analyze the Chemistry machine on Hack The Box. As the machine is still active on the platform, the most sensitive information will be censored in compliance with site policies.
+        </p>
+        <img src="1.png" alt="first" width="600">
+        <p>
+            The machine's address, as shown in the image, is <code>10.10.11.38</code>.
+        </p>
+    </section>
+    <section id="user">
+        <h2>2. User flag</h2>
+        <p>First we will run nmap, to check the active ports.</p>
+        <img src="2.png" alt="first" width="600">
+        <p> 
+        As shown in the image, two ports are active: port 22 and port 5000. We will access the web interface by navigating to <code>http://10.10.11.38:5000 </code>in the browser. The result is displayed in the image below.
+        </p>
+        <img src="3.png" alt="first" width="600">
+        <p>
+            As shown in the screenshot, the platform allows users to register and create a profile, enabling the upload of a .cif file. This functionality can be exploited to obtain a reverse shell. After researching vulnerabilities related to .cif files, I discovered the webpage displayed in the image below. This page provided the exploit code, which I saved as vulnerability.cif.
+        </p>
+        <img src="4.png" alt="first" width="600">
+        <p>
+            After completing the setup, I ran the command <code>netcat -nlvp 4444</code> to start a listener on port 4444. Next, I proceeded to upload the .cif file to the site, which successfully allowed me to obtain a reverse shell.
+        </p>
+        <img src="5.png" alt="first" width="600">
+        <img src="6.png" alt="first" width="600">
+        <img src="7.png" alt="first" width="600">
+        <p>
+            By doing so, we successfully gained access to the system. While exploring, I came across the 'Rosa' directory, which contained a user.txt file. However, access to it was restricted."
+        </p>
+        <img src="8.png" alt="first" width="600">
+        <img src="9.png" alt="first" width="600">
+        <p>
+        To proceed, I decided to use SSH with the username 'Rosa'. However, it prompted me for a password, which I did not have.
+        </p>
+        <img src="10.png" alt="first" width="600">
+        <p>
+            While searching through the various directories on the system, I discovered that the 'instance' folder contained a file named <code>database.db.</code> Using the <code>cat</code> command, I was able to open the file and retrieve the hash for Rosa's password.
+        </p>
+        <img src="11.png" alt="first" width="600">
+        <p>
+            By visiting <code>crackstation.net</code> and entering the password hash, I was able to retrieve the password to access Rosa's system.
+        </p>
+        <img src="12.png" alt="first" width="600">
+        <p>
+            With this, I was able to SSH into Rosa's system and gain access.
+        </p>
+        <img src="13.png" alt="first" width="600">
+        <p>
+            Once inside, I was able to retrieve the user flag.
+        </p>
+        <img src="14.png" alt="first" width="600">
+    </section>
+    <footer>
+        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
