@@ -140,6 +140,18 @@
         </p>
         <img src="14.png" alt="first" width="600">
     </section>
+        <section id="root">
+        <h2>3. Root flag</h2>
+        <p>After retrieving the user flag, I will proceed to locate the root flag. To gather more information about the machine, I will use the command <code>curl localhost:8080 --head</code>, which allows me to examine the HTTP headers and identify potential clues about the server configuration.</p>
+        <img src="15.png" alt="first" width="600">
+        <p>
+        I will investigate vulnerabilities associated with <code>aiohttp/3.9.</code> This version is known to have a Path Traversal vulnerability. Leveraging the information from this <a href="https://owasp.org/www-community/attacks/Path_Traversal?source=post_page-----b96f0b1b37d6--------------------------------" target="_blank">link</a>, I crafted and executed a Proof of Concept (PoC) exploit, to extract the root flag.
+        </p>
+        <img src="16.png" alt="first" width="600">
+        <p> By successfully obtaining both the user and root flags, Chemistry has been pwned. 
+        </p>
+        <img src="17.png" alt="first" width="600">
+    </section>
     <footer>
         <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
     </footer>
