@@ -1,1 +1,174 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkVortex Project | Hack The Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            color: #aaa;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #00bcd4;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        section h2 {
+            color: #00bcd4;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #aaa;
+        }
+        .toc a {
+            display: block;
+            margin-bottom: 10px;
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LinkVortex</h1>
+        <p>Hack The Box | Penetration Testing Report</p>
+    </header>
+    <nav>
+        <a href="../../index.html">About Me</a>
+        <a href="../../projects.html">Projects</a>
+        <a href="../../certifications.html">Certifications</a>
+        <a href="../../contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Table of Contents</h2>
+        <div class="toc">
+            <a href="#introduction">1. Introduction</a>
+            <a href="#user">2. User flag</a>
+            <a href="#root">3. Root flag</a>
+        </div>
+    </section>
+    <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>In this project, we will analyze the LinkVortex machine on Hack The Box. As the machine is still active on the platform, the most sensitive information will be censored in compliance with site policies.
+        </p>
+        <img src="1.png" alt="first" width="600">
+        <p>
+            The machine's address, as shown in the image, is <code>10.10.11.47</code>.
+        </p>
+    </section>
+    <section id="user">
+        <h2>2. User flag</h2>
+        <p>First we will run nmap, to check the active ports.</p>
+        <img src="2.png" alt="first" width="600">
+        <p> 
+        As shown in the image, two ports are active: port 22 and port 80. We will access the web interface by navigating to <code>http://10.10.11.47</code> in the browser. </p>
+<p>The site on port 80 doesn’t seem to offer anything interesting at first glance, so I decided to use <code>ffuf</code> to dig a bit deeper and search for hidden directories.
+        </p>
+        <img src="3.png" alt="first" width="600">
+        <p>None of the directories I found revealed anything useful, so I decided to reutilize <code>ffuf</code> to look for any subdomains that might be worth exploring.
+        </p>
+        <img src="4.png" alt="first" width="600">
+        <p>As shown in the image above, <code>ffuf</code> reveals the dev subdomain. However, even the page at <code>http://dev.linkvortex.htb</code> doesn’t offer anything particularly useful. So, I’ll run ffuf again to search for directories on this subdomain and see if it reveals anything interesting.
+        </p>
+        <img src="5.png" alt="first" width="600">
+        <p><code>ffuf</code> reveals a .git directory on the subdomain. By navigating to <code>http://dev.linkvortex.htb/.git</code>, we can access the page shown below.
+        </p>
+        <img src="6.png" alt="first" width="600">
+        <p>
+            
+To extract all the files from the directory, we’ll use a tool like <code>git-dumper</code>. This allows me to download the repository's contents onto our machine for further analysis. 
+        </p>
+        <img src="7.png" alt="first" width="600">
+        <p>
+            After extracting the files with <code>git-dumper</code>, I discovered a file named <code>authentication.test.js</code>. Upon inspecting it, the file contains various credentials, which might be useful for gaining further access.
+        </p>
+        <img src="8.png" alt="first" width="600">
+        <img src="9.png" alt="first" width="600">
+        <img src="10.png" alt="first" width="600">
+        <p>
+            Among the credentials found in <code>authentication.test.js</code> is one for <strong>admin@linkvortex.htb</strong>. By navigating to <code>http://linkvortex.htb/ghost</code>, one of the directories previously uncovered using <code>ffuf</code>, I was able to log in to the admin page using these credentials.
+        </p>
+        <img src="11.png" alt="first" width="600">
+        <p>
+            Once logged into the site with the administrator credentials, I can navigate to the settings section. Here, I'll be able to check the version of Ghost installed on the platform, which could help in planning further actions or updates.
+        </p>
+        <img src="12.png" alt="first" width="600">
+        <p>
+            As shown in the image above, the site is running Ghost version <strong>5.58.0</strong>. I’ll search for vulnerabilities in this specific version, which led me to discover the exploit shown in the image below.
+        </p>
+        <img src="13.png" alt="first" width="600">
+        <p>Running the exploit successfully grants me the credentials for the user <strong>bob@linkvortex.htb</strong>. This allows me to gain access to the account.
+        </p>
+        <img src="14.png" alt="first" width="600">
+        <p>
+            With the credentials for <strong>bob@linkvortex.htb</strong>, I can now use the SSH command <code>ssh bob@linkvortex.htb</code> to access the account.
+        </p>
+        <img src="15.png" alt="first" width="600">
+        <p>
+            
+Once inside Bob's account via SSH, I can navigate around and retrieve the user flag. 
+        </p>
+        <img src="16.png" alt="first" width="600">
+    </section>
+    <section id="root">
+        <h2>3. Root flag</h2>
+        <p>Staying inside Bob's account, I can run the command <code>sudo -l</code> to check the sudo privileges. From the output, I can see that Bob has permission to execute the <strong>clean_symlink.sh</strong> script as root. This could be a potential vector to escalate privileges.</p>
+        <img src="17.png" alt="first" width="600">
+        <p>
+            The script <strong>clean_symlink.sh</strong> is displayed in the image above. It could potentially allow me to exploit a vulnerability and escalate my privileges.
+        </p>
+        <img src="18.png" alt="first" width="600">
+        <p>
+            To escalate my privileges to root, I executed the commands shown in the image below, allowing me to modify the <strong>clean_symlink.sh</strong> script and achieve root access.
+        </p>
+        <img src="19.png" alt="first" width="600">
+        <p>
+            By successfully obtaining both the user and root flags, LinkVortex has been pwned.
+        </p>
+        <img src="20.png" alt="first" width="600">
+    </section>
+    <footer>
+        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
