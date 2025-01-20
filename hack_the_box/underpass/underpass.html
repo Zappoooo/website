@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnderPass Project | Hack The Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            color: #aaa;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #00bcd4;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        section h2 {
+            color: #00bcd4;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #aaa;
+        }
+        .toc a {
+            display: block;
+            margin-bottom: 10px;
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>UnderPass</h1>
+        <p>Hack The Box | Penetration Testing Report</p>
+    </header>
+    <nav>
+        <a href="../../index.html">About Me</a>
+        <a href="../../projects.html">Projects</a>
+        <a href="../../certifications.html">Certifications</a>
+        <a href="../../contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Table of Contents</h2>
+        <div class="toc">
+            <a href="#introduction">1. Introduction</a>
+            <a href="#user">2. User flag</a>
+            <a href="#root">3. Root flag</a>
+        </div>
+    </section>
+    <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>In this project, we will analyze the UnderPass machine on Hack The Box. As the machine is still active on the platform, the most sensitive information will be censored in compliance with site policies.
+        </p>
+        <img src="1.png" alt="first" width="600">
+        <p>
+            The machine's address, as shown in the image, is <code>10.10.11.48</code>.
+        </p>
+    </section>
+    <section id="user">
+        <h2>2. User flag</h2>
+        <p>First we will run nmap, to check the active ports.</p>
+        <img src="2.png" alt="first" width="600">
+        <p> 
+        As shown in the image, two ports are active: port 22 and port 80. We will access the web interface by navigating to <code>http://10.10.11.48</code> in the browser. </p>
+        <img src="3.png" alt="first" width="600">
+<p>I decided to use <code>snmpwalk</code>, which provided us with a wealth of valuable information, as shown in the image below.
+        </p>
+        <img src="4.png" alt="first" width="600">
+        <p>
+            Using <code>snmpwalk</code>, I was able to extract two key pieces of information. The first is the username <code>steve@underpass.htb</code>. I attempted to access this account via SSH using various credentials, but unfortunately, none were successful. The second important detail is the line: <i>"UnderPass.htb is the only daloradius server in the basin!</i>"
+        </p>
+        <p>
+            I then began researching information about <strong>Daloradius</strong>. Most of the useful details I found were through this <a href="https://github.com/lirantal/daloradius" target="_blank">link</a>. Thanks to this resource, I was able to locate the directory for the login page and also retrieve the credentials needed to access the admin account.
+        </p>
+        <img src="5.png" alt="first" width="600">
+        <img src="6.png" alt="first" width="600">
+        <p>
+            Next, I accessed the login page at <code>http://underpass.htb/daloradius/app/operators/login.php</code> using the credentials:
+        </p>
+        <p>
+            Username: administrator
+        </p>
+        <p>
+            Password: radius
+        </p>
+        <img src="7.png" alt="first" width="600">
+        <p>
+            After logging in, I gained access to the administrator page, as shown in the image below.
+        </p>
+        <img src="8.png" alt="first" width="600">
+        <p>
+            By navigating to the management page, I was able to examine the credentials for the <strong>svcMosh</strong> user. However, the password displayed is only a hashed version.
+        </p>
+        <img src="9.png" alt="first" width="600">
+        <p>
+            To decrypt the hash, I used <code>CrackStation</code>, which allowed me to retrieve the password for the <strong>svcMosh</strong> user.
+        </p>
+        <img src="10.png" alt="first" width="600">
+        <p>
+            Once I obtained the username and password, I used <code>SSH</code> to log in to the system.
+        </p>
+        <img src="11.png" alt="first" width="600">
+        <p>
+            Upon gaining access to the system, I was able to retrieve the user flag.
+        </p>
+        <img src="12.png" alt="first" width="600">
+    </section>
+    <section id="root">
+        <h2>3. Root flag</h2>
+        <p>To gain root privileges, the first step is to run the command <code>sudo -l</code>.
+        </p>
+        <img src="13.png" alt="first" width="600">
+        <p>
+            As we can see, the command that the <strong>svcMosh</strong> user is allowed to execute with <code>sudo</code> is <code>/usr/bin/mosh-server</code>, so I will run the command <code>sudo /usr/bin/mosh-server</code>.
+        </p>
+        <img src="14.png" alt="first" width="600">
+        <p>
+            By searching for information about mosh-server, I found various details through this <a href="https://github.com/mobile-shell/mosh" target="_blank">link</a>.
+        </p>
+        <p>
+            One of the first pieces of information I came across was to run the command <code>sudo /usr/bin/mosh-server new -p 61113</code>, which allows me to establish a new <strong>Mosh</strong> session on port <strong>61113</strong>.
+        </p>
+        <img src="15.png" alt="first" width="600">
+        <p>
+            As we can see, the output <strong>MOSH CONNECT 61113 POAEQiILPoEwZsdIHZDDUQ</strong> is displayed. The last part, <strong>POAEQiILPoEwZsdIHZDDUQ</strong>, is the password for the generated connection, which will be different for each new session.
+        </p>
+        <p>
+          Using this newly created connection, I ran the command:
+<strong>MOSH_KEY=POAEQiILPoEwZsdIHZDDUQ mosh-client 127.0.0.1 61113.</strong>
+(Note: The password will vary with each connection created.)  
+        </p>
+        <img src="16.png" alt="first" width="600">
+        <p>
+            This will allow me to gain root privileges.
+        </p>
+        <img src="17.png" alt="first" width="600">
+        <p>This will allow me to simply get the root flag.</p>
+        <img src="18.png" alt="first" width="600">
+        <p> By successfully obtaining both the user and root flags, UnderPass has been pwned. 
+        </p>
+        <img src="19.png" alt="first" width="600">
+    </section>
+    <footer>
+        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
