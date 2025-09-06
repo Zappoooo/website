@@ -1,126 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Davide Battilocchio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-        header {
-            background-color: #333;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            margin: 5px 0;
-            font-size: 1.2em;
-            color: #aaa;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 10px;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-        nav a:hover {
-            color: #00bcd4;
-        }
-        section {
-            padding: 20px;
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #222;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        section h2 {
-            margin-top: 0;
-            color: #00bcd4;
-        }
-        .project-item {
-            margin-bottom: 20px;
-        }
-        .project-item h3 {
-            color: #fff;
-        }
-        .project-item p {
-            color: #ccc;
-        }
-        .project-links {
-            margin-top: 10px;
-        }
-        .project-links a {
-            margin-right: 10px;
-            color: #00bcd4;
-            text-decoration: none;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: #aaa;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects • Davide Battilocchio</title>
+  <meta name="description" content="Featured cybersecurity projects by Davide Battilocchio: SOC dashboards, Redline memory forensics, ransomware playbooks, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0f1115; --panel:#171923; --panel-2:#121521; --text:#e6e6e9; --muted:#9aa3af; --brand:#00bcd4; --brand-2:#7dd3fc; --border:#232735; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{ margin:0; font-family:Inter,system-ui,sans-serif; background: radial-gradient(1200px 800px at 110% -10%, rgba(0,188,212,.08), transparent 60%) no-repeat, var(--bg); color:var(--text); line-height:1.6; }
+
+    header{ background: linear-gradient(180deg, rgba(0,188,212,.10), rgba(0,188,212,0) 60%), var(--panel); border-bottom:1px solid var(--border); }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+    .branding{ display:flex; align-items:center; gap:14px; padding:26px 0 10px; }
+    .avatar{ width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; color:#0a0a0a; font-weight:800; box-shadow:var(--shadow); }
+    .title h1{ margin:0; font-size:clamp(1.7rem,1.3rem+1.2vw,2.4rem); letter-spacing:.2px; }
+    .title p{ margin:.25rem 0 0; color:var(--muted); }
+
+    nav.primary{ margin:12px 0 20px; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:10px; display:flex; gap:8px; flex-wrap:wrap; box-shadow:var(--shadow); }
+    nav.primary a{ text-decoration:none; color:var(--text); padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid transparent; }
+    nav.primary a[aria-current="page"], nav.primary a:hover{ background: rgba(0,188,212,.12); border-color: rgba(0,188,212,.25); color:#dff9ff; }
+
+    main{ padding:28px 0 64px; }
+    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; }
+    h2{ margin:0 0 .4rem; font-size:clamp(1.2rem,1rem+.9vw,1.6rem); color:#dff9ff }
+    .subtitle{ color:var(--muted); margin:.1rem 0 1rem; }
+
+    .grid{ display:grid; gap:16px; }
+    .grid.cards{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card{ background:var(--panel-2); border:1px solid var(--border); border-radius:14px; padding:16px; }
+    .card h3{ margin:.2rem 0 .25rem; font-size:1.05rem; }
+    .card p{ margin:0; color:var(--muted); }
+    .card a{ color:var(--brand-2); text-decoration:none; }
+
+    .manifest-status{ font-size:.92rem; color:var(--muted); margin-top:8px; }
+
+    footer{ border-top:1px solid var(--border); background:var(--panel); color:var(--muted); }
+    .footer-inner{ padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+    .footer-inner a{ color:var(--brand-2); text-decoration:none; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Davide Battilocchio</h1>
-        <p>Cybersecurity Expert | Offensive Security | Web Application Defense</p>
-    </header>
-    <nav>
+  <header>
+    <div class="container">
+      <div class="branding" role="banner">
+        <div class="avatar" aria-hidden="true">DB</div>
+        <div class="title">
+          <h1>Davide Battilocchio</h1>
+          <p>Cybersecurity Professional • SOC / Incident Response • Web Application Defense</p>
+        </div>
+      </div>
+      <nav class="primary" aria-label="Primary">
         <a href="index.html">About Me</a>
-        <a href="projects.html">Projects</a>
+        <a href="projects.html" aria-current="page">Projects</a>
         <a href="certifications.html">Certifications</a>
         <a href="contact.html">Contact</a>
-    </nav>
-    <section>
-        <h2>Projects</h2>
-        
-        <div id="generalProjects">
-        </div>
-        
-        <div id="hackTheBoxRedirect">
-            <p>Check out my <a href="/hack_the_box/hack_the_box.html">Hack The Box projects</a> for detailed penetration testing exercises and hands-on experience.</p>
-        </div>
-        <div id="OtherProjectsRedirect">
-            <p>Check out my <a href="/other_projects/other_projects.html">Other Projects</a> for detailed penetration testing exercises and hands-on experience.</p>
-        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Featured section you can edit by hand -->
+    <section class="panel" aria-labelledby="featured">
+      <h2 id="featured">Featured Projects</h2>
+      <p class="subtitle">A few highlights across incident response, detection content, and forensics.</p>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Ransomware Response Playbook</h3>
+          <p>End‑to‑end IR workflow with containment steps and Splunk searches.</p>
+        </article>
+        <article class="card">
+          <h3>SOC Dashboards (Splunk)</h3>
+          <p>KPIs, notable events, drilldowns to reduce MTTR.</p>
+        </article>
+        <article class="card">
+          <h3>Memory Forensics (Redline)</h3>
+          <p>Standard/IOC collections, artifacts triage, and report excerpts.</p>
+        </article>
+      </div>
     </section>
-    <footer>
-        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
-    </footer>
 
-    <script>
-        // Fetch and display General Projects
-        const generalProjectsContainer = document.getElementById('generalProjects');
-        const generalProjectsDir = './projects/general/uploads/';
+    <!-- Auto-rendered general projects via JSON manifest -->
+    <section class="panel" aria-labelledby="general">
+      <h2 id="general">General Projects</h2>
+      <p class="subtitle">Loaded from a small JSON file so it works on static hosting.</p>
+      <div id="generalProjects" class="grid cards" role="list"></div>
+      <div id="manifestStatus" class="manifest-status" aria-live="polite"></div>
+    </section>
 
-        fetch(generalProjectsDir)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(file => {
-                    const projectItem = document.createElement('div');
-                    projectItem.className = 'project-item';
-                    projectItem.innerHTML = `<h3>${file.name}</h3><p>Click <a href="${generalProjectsDir}${file.name}" target="_blank">here</a> to view details.</p>`;
-                    generalProjectsContainer.appendChild(projectItem);
-                });
-            });
-    </script>
-</body>
-</html>
+    <!-- Redirect sections as cards -->
+    <section class="panel" aria-labelledby="deepdives">
+      <h2 id="deepdives">Deep Dives</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Hack The Box</h3>
+          <p>Hands‑on labs and writeups.</p>
+          <p><a href="/hack_the_box/hack_the_box.html">Open HTB projects →</a></p>
+        </article>
+        <article class="card">
+          <h3>Other Projects<
