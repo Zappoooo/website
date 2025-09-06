@@ -1,90 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Davide Battilocchio | Contact</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-        header {
-            background-color: #333;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            margin: 5px 0;
-            font-size: 1.2em;
-            color: #aaa;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 10px;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-        nav a:hover {
-            color: #00bcd4;
-        }
-        section {
-            padding: 20px;
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #222;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        section h2 {
-            margin-top: 0;
-            color: #00bcd4;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: #aaa;
-        }
-        footer a {
-            color: #00bcd4;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Davide Battilocchio • Contact</title>
+  <meta name="description" content="Contact details for Davide Battilocchio, cybersecurity professional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0f1115;
+      --panel:#171923;
+      --text:#e6e6e9;
+      --muted:#9aa3af;
+      --brand:#00bcd4;
+      --brand-2:#7dd3fc;
+      --border:#232735;
+      --shadow: 0 10px 24px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+
+    body{
+      margin:0; font-family:Inter, system-ui, sans-serif; background: var(--bg); color:var(--text);
+    }
+
+    header{ background: var(--panel); border-bottom:1px solid var(--border); padding:28px 20px; text-align:center; }
+    header h1{ margin:0; font-size:2rem; }
+    header p{ margin:.25rem 0 0; color:var(--muted); font-size:1rem; }
+
+    nav.primary{ background: var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:12px; display:flex; justify-content:center; gap:12px; }
+    nav.primary a{ color:var(--text); text-decoration:none; font-weight:600; padding:8px 14px; border-radius:10px; }
+    nav.primary a[aria-current="page"], nav.primary a:hover{ background: rgba(0,188,212,.12); color:#dff9ff; }
+
+    main{ max-width:900px; margin:30px auto; padding:0 20px; }
+    .panel{ background: var(--panel); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding:24px; text-align:center; }
+    .panel h2{ margin:0 0 1rem; color:#dff9ff; font-size:1.4rem; }
+
+    .profile-img{ width:180px; height:180px; border-radius:50%; object-fit:cover; box-shadow: var(--shadow); border:3px solid rgba(0,188,212,.3); margin-bottom:16px; }
+
+    .contact-info{ display:grid; gap:10px; justify-content:center; margin-top:10px; }
+    .contact-info a{ color:var(--brand-2); text-decoration:none; font-weight:600; }
+    .contact-info p{ margin:0; }
+
+    footer{ border-top:1px solid var(--border); background: var(--panel); color:var(--muted); }
+    .footer-inner{ padding:18px 20px; text-align:center; }
+    .footer-inner a{ color:var(--brand-2); text-decoration:none; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Davide Battilocchio</h1>
-        <p>Cybersecurity Expert | Offensive Security | Web Application Defense</p>
-    </header>
-    <nav>
-        <a href="index.html">About Me</a>
-        <a href="projects.html">Projects</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <section>
-        <h2>Contact</h2>
-        <p>If you'd like to collaborate or learn more, feel free to reach out: </p>
-        <p>Email: battilocchiodavide1@gmail.com</p>
-        <p>Phone: (929) 469-6140</p>
-        <p><a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
+  <header>
+    <h1>Davide Battilocchio</h1>
+    <p>Cybersecurity Professional • SOC / Incident Response • Web Application Defense</p>
+  </header>
+
+  <nav class="primary" aria-label="Primary">
+    <a href="index.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+  </nav>
+
+  <main>
+    <section class="panel" aria-labelledby="contact">
+      <img src="8de7f132-e587-4865-9edf-c3c355398db9.jpg" alt="Portrait of Davide Battilocchio" class="profile-img" />
+      <h2 id="contact">Contact</h2>
+      <p>If you'd like to collaborate or learn more, feel free to reach out:</p>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:battilocchiodavide1@gmail.com">battilocchiodavide1@gmail.com</a></p>
+        <p>Phone: <a href="tel:+19294696140">(929) 469-6140</a></p>
+        <p><a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn Profile →</a></p>
+      </div>
     </section>
-    <footer>
-        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
-    </footer>
+  </main>
+
+  <footer>
+    <div class="footer-inner">© 2025 Davide Battilocchio • <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+  </footer>
 </body>
 </html>
