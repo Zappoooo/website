@@ -1,112 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<meta charset="utf-8" />
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Davide Battilocchio • Certifications and milestones</title>
-  <meta name="description" content="Cybersecurity professional focused on SOC operations, incident response, SIEM engineering, and web application defense." />
+  <title>Certifications • Davide Battilocchio</title>
+  <meta name="description" content="Certifications, education, and professional milestones for Davide Battilocchio, cybersecurity professional." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    :root{ --bg:#0f1115; --panel:#171923; --panel-2:#121521; --text:#e6e6e9; --muted:#9aa3af; --brand:#00bcd4; --brand-2:#7dd3fc; --border:#232735; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:16px; }
-    *{box-sizing:border-box}
-    body{ margin:0; font-family:Inter,system-ui,sans-serif; background:radial-gradient(1200px 800px at 110% -10%,rgba(0,188,212,.08),transparent 60%) no-repeat, var(--bg); color:var(--text); line-height:1.6;}
-    header{ background: linear-gradient(180deg, rgba(0,188,212,.10), rgba(0,188,212,0) 60%), var(--panel); border-bottom:1px solid var(--border);}
-    .container{ max-width:1100px; margin:0 auto; padding:0 20px;}
-    .branding{ display:flex; align-items:center; gap:14px; padding:26px 0 10px;}
-    .avatar{ width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:grid; place-items:center; color:#0a0a0a; font-weight:800; box-shadow:var(--shadow);}
-    .title h1{ margin:0; font-size:clamp(1.7rem,1.3rem+1.2vw,2.4rem);}
-    .title p{ margin:.25rem 0 0; color:var(--muted);}
-    nav.primary{ margin:12px 0 20px; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:10px; display:flex; gap:8px; flex-wrap:wrap;}
-    nav.primary a{ text-decoration:none; color:var(--text); padding:10px 14px; border-radius:10px; font-weight:600;}
-    nav.primary a[aria-current="page"], nav.primary a:hover{ background:rgba(0,188,212,.12); color:#dff9ff;}
-    main{ padding:28px 0 64px;}
-    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;}
-    footer{ border-top:1px solid var(--border); background:var(--panel); color:var(--muted);}
-    .footer-inner{ padding:18px 20px; text-align:center;}
-    .footer-inner a{ color:var(--brand-2);}
+    :root{
+      --bg:#0f1115;           /* page background */
+      --panel:#171923;        /* card/nav background */
+      --text:#e6e6e9;         /* primary text */
+      --muted:#9aa3af;        /* secondary text */
+      --brand:#00bcd4;        /* accent */
+      --brand-2:#7dd3fc;      /* lighter accent */
+      --border:#232735;       /* subtle borders */
+      --shadow: 0 10px 24px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      background: radial-gradient(1200px 700px at 100% -10%, rgba(0,188,212,.08), transparent 60%) no-repeat, var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Accessibility: skip link */
+    .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .skip-link:focus{ left: 16px; top:16px; width:auto; height:auto; padding:.6rem .9rem; background:#000; color:#fff; border-radius:8px; z-index:1000; }
+
+    header{
+      background: linear-gradient(180deg, rgba(0,188,212,.10), rgba(0,188,212,0) 60%), var(--panel);
+      border-bottom:1px solid var(--border);
+      padding: 28px 20px 22px;
+    }
+    .container{ max-width: 1100px; margin:0 auto; padding: 0 20px; }
+    .branding{ display:flex; align-items:center; gap:14px; }
+    .avatar{
+      width:52px; height:52px; border-radius:50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid; place-items:center; font-weight:800; color:#0a0a0a; box-shadow:var(--shadow);
+    }
+    .title-wrap h1{ margin:0; font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem); letter-spacing:.2px; }
+    .title-wrap p{ margin:2px 0 0; color:var(--muted); font-size: .98rem; }
+
+    nav.primary{
+      margin-top:16px; background: var(--panel); border:1px solid var(--border);
+      border-radius: var(--radius); padding: 10px; display:flex; gap:6px; flex-wrap:wrap; box-shadow: var(--shadow);
+    }
+    nav.primary a{
+      text-decoration:none; color:var(--text); padding: 10px 14px; border-radius: 10px; font-weight:600;
+      display:inline-flex; align-items:center; gap:8px; border:1px solid transparent;
+    }
+    nav.primary a[aria-current="page"], nav.primary a:hover{
+      background: rgba(0,188,212,.12); border-color: rgba(0,188,212,.25); color:#dff9ff;
+    }
+
+    main{ padding: 28px 0 60px; }
+
+    .panel{
+      background: var(--panel); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px;
+    }
+
+    .intro p{ margin:0; }
+    .intro a{ color: var(--brand-2); text-decoration: none; border-bottom: 1px dashed rgba(125,211,252,.5); }
+    .intro a:hover{ border-bottom-style: solid; }
+
+    h2.section-title{ margin: 22px 0 12px; font-size: clamp(1.2rem, 1rem + .9vw, 1.6rem); color: #dff9ff; letter-spacing:.2px; }
+    .subtitle{ color:var(--muted); margin-top:-6px; font-size:.95rem; }
+
+    /* Timeline */
+    .timeline{ position:relative; margin-top:24px; }
+    .timeline::before{
+      content:""; position:absolute; top:0; bottom:0; left:50%; width:2px; transform:translateX(-50%);
+      background: linear-gradient(var(--brand), transparent 10%, transparent 90%, var(--brand)); opacity:.35;
+    }
+    .tl-list{ list-style:none; margin:0; padding:0; }
+    .tl-item{
+      position:relative; width:50%; padding: 18px 18px 18px 18px; 
+    }
+    .tl-item:nth-child(odd){ padding-right: 32px; padding-left: 0; }
+    .tl-item:nth-child(even){ margin-left: 50%; padding-left: 32px; }
+
+    .card{
+      background: #121521; border:1px solid var(--border); border-radius: 14px; padding: 16px 16px 14px; position:relative; box-shadow: var(--shadow);
+    }
+    .dot{ position:absolute; top: 22px; width:12px; height:12px; background: var(--brand); border-radius:50%; box-shadow: 0 0 0 4px rgba(0,188,212,.15); }
+    .tl-item:nth-child(odd) .dot{ right: -6px; }
+    .tl-item:nth-child(even) .dot{ left: -6px; }
+
+    .date{ color: var(--brand-2); font-weight: 700; font-size:.85rem; letter-spacing:.3px; text-transform: uppercase; }
+    .heading{ margin:.2rem 0 .35rem; font-size:1.05rem; font-weight:700; }
+    .desc{ color: var(--muted); margin:0; font-size:.94rem; }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .timeline::before{ left: 14px; transform:none; }
+      .tl-item, .tl-item:nth-child(even){ width:100%; margin:0; padding: 18px 0 18px 36px; }
+      .dot{ left: 8px; }
+    }
+
+    /* Motion preferences */
+    @media (prefers-reduced-motion: reduce){ * { scroll-behavior: auto !important; } }
+
+    footer{ border-top:1px solid var(--border); background: var(--panel); color:var(--muted); }
+    .footer-inner{ padding: 18px 20px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+    .footer-inner a{ color: var(--brand-2); text-decoration:none; }
   </style>
 </head>
 <body>
-<a href="index.html">About Me</a>
-<a href="projects.html">Projects</a>
-<a href="certifications.html" aria-current="page">Certifications</a>
-<a href="contact.html">Contact</a>
-</nav>
-</div>
-</header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <div class="container">
+      <div class="branding" role="banner">
+        <div class="avatar" aria-hidden="true">DB</div>
+        <div class="title-wrap">
+          <h1>Davide Battilocchio</h1>
+          <p>Cybersecurity Professional • SOC / Incident Response • Web Application Defense</p>
+        </div>
+      </div>
+      <nav class="primary" aria-label="Primary">
+        <a href="index.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html" aria-current="page">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="main" class="container" tabindex="-1">
+    <section class="panel intro" aria-labelledby="wallet-link">
+      <h2 id="wallet-link" class="section-title">Skills Wallet</h2>
+      <p>
+        View verified skills & badges in my
+        <a href="https://wallet.iq4.com/user/dbattilocchio@saintpeters.edu" target="_blank" rel="noopener noreferrer">IQ4 wallet</a>.
+      </p>
+    </section>
 
-<main id="main" class="container" tabindex="-1">
-<section class="panel intro" aria-labelledby="wallet-link">
-<h2 id="wallet-link" class="section-title">Skills Wallet</h2>
-<p>
-View verified skills & badges in my
-<a href="https://wallet.iq4.com/user/dbattilocchio@saintpeters.edu" target="_blank" rel="noopener noreferrer">IQ4 wallet</a>.
-</p>
-</section>
+    <section class="panel" aria-labelledby="cert-and-edu">
+      <h2 id="cert-and-edu" class="section-title">Certifications & Education</h2>
+      <p class="subtitle">A timeline of credentials and key milestones.</p>
 
+      <div class="timeline" role="list">
+        <ul class="tl-list">
+          <!-- Item 1 -->
+          <li class="tl-item" role="listitem">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <div class="date">March 2025</div>
+              <div class="heading">CompTIA Security+</div>
+              <p class="desc">Certification earned demonstrating knowledge of network security, threats, vulnerability management, and incident response.</p>
+            </div>
+          </li>
 
-<section class="panel" aria-labelledby="cert-and-edu">
-<h2 id="cert-and-edu" class="section-title">Certifications & Education</h2>
-<p class="subtitle">A timeline of credentials and key milestones.</p>
+          <!-- Item 2 -->
+          <li class="tl-item" role="listitem">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <div class="date">February 2025</div>
+              <div class="heading">Master’s in Cybersecurity — Saint Peter’s University</div>
+              <p class="desc">Graduate program focused on SOC operations, SIEM engineering (Splunk), malware analysis, and digital forensics.</p>
+            </div>
+          </li>
 
+          <!-- Item 3 -->
+          <li class="tl-item" role="listitem">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <div class="date">February 2025</div>
+              <div class="heading">Security Analyst (SOC) — Novacoast, Inc.</div>
+              <p class="desc">Night-shift SOC analyst supporting multiple clients; triage, investigation, and response across SIEM/EDR platforms.</p>
+            </div>
+          </li>
 
-<div class="timeline" role="list">
-<ul class="tl-list">
-<!-- Item 1 -->
-<li class="tl-item" role="listitem">
-<span class="dot" aria-hidden="true"></span>
-<div class="card">
-<div class="date">March 2025</div>
-<div class="heading">CompTIA Security+</div>
-<p class="desc">Certification earned demonstrating knowledge of network security, threats, vulnerability management, and incident response.</p>
-</div>
-</li>
+          <!-- Item 4 -->
+          <li class="tl-item" role="listitem">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <div class="date">March 2023</div>
+              <div class="heading">Bachelor’s in Computer Science — Università degli Studi dell’Insubria</div>
+              <p class="desc">Undergraduate studies emphasizing software engineering, networks, and information security fundamentals.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
-
-<!-- Item 2 -->
-<li class="tl-item" role="listitem">
-<span class="dot" aria-hidden="true"></span>
-<div class="card">
-<div class="date">February 2025</div>
-<div class="heading">Master’s in Cybersecurity — Saint Peter’s University</div>
-<p class="desc">Graduate program focused on SOC operations, SIEM engineering (Splunk), malware analysis, and digital forensics.</p>
-</div>
-</li>
-
-
-<!-- Item 3 -->
-<li class="tl-item" role="listitem">
-<span class="dot" aria-hidden="true"></span>
-<div class="card">
-<div class="date">February 2025</div>
-<div class="heading">Security Analyst (SOC) — Novacoast, Inc.</div>
-<p class="desc">Night-shift SOC analyst supporting multiple clients; triage, investigation, and response across SIEM/EDR platforms.</p>
-</div>
-</li>
-
-
-<!-- Item 4 -->
-<li class="tl-item" role="listitem">
-<span class="dot" aria-hidden="true"></span>
-<div class="card">
-<div class="date">March 2023</div>
-<div class="heading">Bachelor’s in Computer Science — Università degli Studi dell’Insubria</div>
-<p class="desc">Undergraduate studies emphasizing software engineering, networks, and information security fundamentals.</p>
-</div>
-</li>
-</ul>
-</div>
-</section>
-</main>
-
-
-<footer>
-<div class="container footer-inner">
-<span>© 2025 Davide Battilocchio</span>
-<a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-</div>
-</footer>
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2025 Davide Battilocchio</span>
+      <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </footer>
 </body>
 </html>
