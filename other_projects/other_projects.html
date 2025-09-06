@@ -1,120 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Other Projects | Davide Battilocchio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-        header {
-            background-color: #333;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            margin: 5px 0;
-            font-size: 1.2em;
-            color: #aaa;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 10px;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-        nav a:hover {
-            color: #00bcd4;
-        }
-        section {
-            padding: 20px;
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #222;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        section h2 {
-            margin-top: 0;
-            color: #00bcd4;
-        }
-        .project-item {
-            margin-bottom: 20px;
-        }
-        .project-item h3 {
-            color: #fff;
-        }
-        .project-item p {
-            color: #ccc;
-        }
-        .project-links {
-            margin-top: 10px;
-        }
-        .project-links a {
-            margin-right: 10px;
-            color: #00bcd4;
-            text-decoration: none;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: #aaa;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Other Projects • Davide Battilocchio</title>
+  <meta name="description" content="Other cybersecurity projects by Davide Battilocchio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0f1115; --panel:#171923; --panel-2:#121521; --text:#e6e6e9; --muted:#9aa3af; --brand:#00bcd4; --brand-2:#7dd3fc; --border:#232735; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, sans-serif;
+      background: radial-gradient(1200px 700px at 100% -10%, rgba(0,188,212,.08), transparent 60%) no-repeat, var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+
+    header{ background: linear-gradient(180deg, rgba(0,188,212,.10), rgba(0,188,212,0) 60%), var(--panel); border-bottom:1px solid var(--border); padding: 28px 20px 22px; }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+    .branding{ display:flex; align-items:center; gap:14px; }
+    .avatar{ width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; font-weight:800; color:#0a0a0a; box-shadow:var(--shadow); }
+    .title-wrap h1{ margin:0; font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem); }
+    .title-wrap p{ margin:2px 0 0; color:var(--muted); font-size:.98rem; }
+
+    nav.primary{ margin-top:16px; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:10px; display:flex; gap:6px; flex-wrap:wrap; box-shadow:var(--shadow); }
+    nav.primary a{ text-decoration:none; color:var(--text); padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid transparent; }
+    nav.primary a[aria-current="page"], nav.primary a:hover{ background: rgba(0,188,212,.12); border-color: rgba(0,188,212,.25); color:#dff9ff; }
+
+    main{ padding:28px 0 60px; }
+    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px; }
+
+    h2{ margin:0 0 .4rem; color:#dff9ff; font-size: clamp(1.2rem, 1rem + .9vw, 1.6rem); }
+    .subtitle{ color:var(--muted); margin:.1rem 0 1rem; }
+
+    .project-list{ display:grid; gap:12px; }
+    .project-item{ background:#121521; border:1px solid var(--border); border-radius:12px; padding:14px; }
+    .project-item a{ color:var(--brand-2); text-decoration:none; font-weight:700; }
+    .project-item a:hover{ text-decoration:underline; }
+
+    footer{ border-top:1px solid var(--border); background: var(--panel); color:var(--muted); }
+    .footer-inner{ padding: 18px 20px; text-align:center; }
+    .footer-inner a{ color:var(--brand-2); text-decoration:none; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Davide Battilocchio</h1>
-        <p>Cybersecurity Expert | Offensive Security | Web Application Defense</p>
-    </header>
-    <nav>
+  <header>
+    <div class="container">
+      <div class="branding" role="banner">
+        <div class="avatar" aria-hidden="true">DB</div>
+        <div class="title-wrap">
+          <h1>Davide Battilocchio</h1>
+          <p>Cybersecurity Professional • SOC / Incident Response • Web Application Defense</p>
+        </div>
+      </div>
+      <nav class="primary" aria-label="Primary">
         <a href="../index.html">About Me</a>
         <a href="../projects.html">Projects</a>
         <a href="../certifications.html">Certifications</a>
         <a href="../contact.html">Contact</a>
-    </nav>
-    <section>
-        <h2>Other Projects</h2>
-        
-        <div id="htbProjects">
-            <p>Click <a href="creation_fake_news/creation_fake_news.html" target="_blank">here</a> to view the Creation and Detection of Fake News project.</p>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel" aria-labelledby="other">
+      <h2 id="other">Other Projects</h2>
+      <p class="subtitle">Coursework, utilities, and experiments outside HTB.</p>
+      <div class="project-list" id="otherProjects">
+        <div class="project-item">
+          <a href="creation_fake_news/creation_fake_news.html" target="_blank" rel="noopener">Creation & Detection of Fake News →</a>
         </div>
+      </div>
     </section>
-    <footer>
-        <p>&copy; 2025 Davide Battilocchio | <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></p>
-    </footer>
+  </main>
 
-    <script>
-        // Fetch and display Hack The Box Projects
-        const htbProjectsContainer = document.getElementById('htbProjects');
-        const htbProjectsDir = './projects/hack_the_box/uploads/';
-
-        fetch(htbProjectsDir)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(file => {
-                    const projectItem = document.createElement('div');
-                    projectItem.className = 'project-item';
-                    projectItem.innerHTML = `<h3>${file.name}</h3><p>Click <a href="${htbProjectsDir}${file.name}" target="_blank">here</a> to view details.</p>`;
-                    htbProjectsContainer.appendChild(projectItem);
-                });
-            });
-    </script>
+  <footer>
+    <div class="footer-inner">
+      © 2025 Davide Battilocchio •
+      <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </footer>
 </body>
 </html>
