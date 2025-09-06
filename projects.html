@@ -4,14 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects • Davide Battilocchio</title>
-  <meta name="description" content="Featured cybersecurity projects by Davide Battilocchio: SOC dashboards, Redline memory forensics, ransomware playbooks, and more." />
+  <meta name="description" content="Project links for Davide Battilocchio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --bg:#0f1115; --panel:#171923; --panel-2:#121521; --text:#e6e6e9; --muted:#9aa3af; --brand:#00bcd4; --brand-2:#7dd3fc; --border:#232735; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:16px;
-    }
+    :root{ --bg:#0f1115; --panel:#171923; --panel-2:#121521; --text:#e6e6e9; --muted:#9aa3af; --brand:#00bcd4; --brand-2:#7dd3fc; --border:#232735; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:16px; }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{ margin:0; font-family:Inter,system-ui,sans-serif; background: radial-gradient(1200px 800px at 110% -10%, rgba(0,188,212,.08), transparent 60%) no-repeat, var(--bg); color:var(--text); line-height:1.6; }
@@ -32,14 +30,10 @@
     h2{ margin:0 0 .4rem; font-size:clamp(1.2rem,1rem+.9vw,1.6rem); color:#dff9ff }
     .subtitle{ color:var(--muted); margin:.1rem 0 1rem; }
 
-    .grid{ display:grid; gap:16px; }
-    .grid.cards{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .card{ background:var(--panel-2); border:1px solid var(--border); border-radius:14px; padding:16px; }
-    .card h3{ margin:.2rem 0 .25rem; font-size:1.05rem; }
-    .card p{ margin:0; color:var(--muted); }
-    .card a{ color:var(--brand-2); text-decoration:none; }
-
-    .manifest-status{ font-size:.92rem; color:var(--muted); margin-top:8px; }
+    .links{ display:grid; gap:14px; }
+    .link-card{ background:var(--panel-2); border:1px solid var(--border); border-radius:14px; padding:16px; }
+    .link-card a{ color:var(--brand-2); text-decoration:none; font-weight:700; }
+    .link-card p{ margin:.2rem 0 0; color:var(--muted); }
 
     footer{ border-top:1px solid var(--border); background:var(--panel); color:var(--muted); }
     .footer-inner{ padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
@@ -66,42 +60,27 @@
   </header>
 
   <main class="container">
-    <!-- Featured section you can edit by hand -->
-    <section class="panel" aria-labelledby="featured">
-      <h2 id="featured">Featured Projects</h2>
-      <p class="subtitle">A few highlights across incident response, detection content, and forensics.</p>
-      <div class="grid cards">
-        <article class="card">
-          <h3>Ransomware Response Playbook</h3>
-          <p>End‑to‑end IR workflow with containment steps and Splunk searches.</p>
-        </article>
-        <article class="card">
-          <h3>SOC Dashboards (Splunk)</h3>
-          <p>KPIs, notable events, drilldowns to reduce MTTR.</p>
-        </article>
-        <article class="card">
-          <h3>Memory Forensics (Redline)</h3>
-          <p>Standard/IOC collections, artifacts triage, and report excerpts.</p>
-        </article>
+    <section class="panel" aria-labelledby="projects">
+      <h2 id="projects">Project Links</h2>
+      <p class="subtitle">Quick access to my hands‑on work.</p>
+      <div class="links">
+        <div class="link-card">
+          <a href="/hack_the_box/hack_the_box.html">Hack The Box Projects →</a>
+          <p>Pen‑testing labs and write‑ups.</p>
+        </div>
+        <div class="link-card">
+          <a href="/other_projects/other_projects.html">Other Projects →</a>
+          <p>Coursework, utilities, and experiments.</p>
+        </div>
       </div>
     </section>
+  </main>
 
-    <!-- Auto-rendered general projects via JSON manifest -->
-    <section class="panel" aria-labelledby="general">
-      <h2 id="general">General Projects</h2>
-      <p class="subtitle">Loaded from a small JSON file so it works on static hosting.</p>
-      <div id="generalProjects" class="grid cards" role="list"></div>
-      <div id="manifestStatus" class="manifest-status" aria-live="polite"></div>
-    </section>
-
-    <!-- Redirect sections as cards -->
-    <section class="panel" aria-labelledby="deepdives">
-      <h2 id="deepdives">Deep Dives</h2>
-      <div class="grid cards">
-        <article class="card">
-          <h3>Hack The Box</h3>
-          <p>Hands‑on labs and writeups.</p>
-          <p><a href="/hack_the_box/hack_the_box.html">Open HTB projects →</a></p>
-        </article>
-        <article class="card">
-          <h3>Other Projects<
+  <footer>
+    <div class="footer-inner container">
+      <span>© 2025 Davide Battilocchio</span>
+      <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </footer>
+</body>
+</html>
