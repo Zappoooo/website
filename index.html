@@ -3,96 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Davide Battilocchio • Cybersecurity Professional</title>
+  <title>Davide Battilocchio • About Me</title>
   <meta name="description" content="Cybersecurity professional focused on SOC operations, incident response, SIEM engineering, and web application defense." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --bg:#0f1115;
-      --panel:#171923;
-      --panel-2:#121521;
-      --text:#e6e6e9; 
-      --muted:#9aa3af; 
-      --brand:#00bcd4;   
-      --brand-2:#7dd3fc;  
-      --border:#232735;      
-      --shadow: 0 10px 24px rgba(0,0,0,.35);
-      --radius: 16px;
-    }
-
+    :root{ --bg:#0f1115; --panel:#171923; --panel-2:#121521; --text:#e6e6e9; --muted:#9aa3af; --brand:#00bcd4; --brand-2:#7dd3fc; --border:#232735; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:16px; }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-      background: radial-gradient(1200px 800px at 110% -10%, rgba(0,188,212,.08), transparent 60%) no-repeat, var(--bg);
-      color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-
-    .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; }
-    .skip-link:focus{ left: 16px; top:16px; width:auto; height:auto; padding:.6rem .9rem; background:#000; color:#fff; border-radius:8px; z-index:1000; }
-
-    header{ background: linear-gradient(180deg, rgba(0,188,212,.10), rgba(0,188,212,0) 60%), var(--panel); border-bottom:1px solid var(--border); }
-    .container{ max-width: 1100px; margin:0 auto; padding: 0 20px; }
-
-    .branding{ display:flex; align-items:center; gap:14px; padding: 26px 0 10px; }
-    .avatar{ width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; color:#0a0a0a; font-weight:800; box-shadow:var(--shadow); }
-    .title h1{ margin:0; font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.4rem); letter-spacing:.2px; }
-    .title p{ margin:.25rem 0 0; color:var(--muted); }
-
-    nav.primary{ margin: 12px 0 20px; background: var(--panel); border:1px solid var(--border); border-radius: var(--radius); padding: 10px; display:flex; gap:8px; flex-wrap:wrap; box-shadow: var(--shadow); }
-    nav.primary a{ text-decoration:none; color:var(--text); padding: 10px 14px; border-radius: 10px; font-weight:600; border:1px solid transparent; }
-    nav.primary a[aria-current="page"], nav.primary a:hover{ background: rgba(0,188,212,.12); border-color: rgba(0,188,212,.25); color:#dff9ff; }
-
-    main{ padding: 28px 0 64px; }
-
-    .grid{ display:grid; gap:20px; }
-    @media (min-width: 900px){ .grid-2{ grid-template-columns: 1.15fr .85fr; } }
-
-    .panel{ background: var(--panel); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
-    .panel h2{ margin: 0 0 .4rem; font-size: clamp(1.2rem, 1rem + .9vw, 1.6rem); color: #dff9ff; }
-    .subtitle{ color:var(--muted); margin: .1rem 0 1rem; }
-
-    .hero{ position:relative; overflow:hidden; }
-    .hero::after{ content:""; position:absolute; inset:0; background: radial-gradient(500px 220px at 100% 0%, rgba(125,211,252,.08), transparent 60%); pointer-events:none; }
-
-    .kpis{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-top:12px; }
-    @media (min-width: 560px){ .kpis{ grid-template-columns: repeat(4, 1fr); } }
-    .kpi{ background: var(--panel-2); border:1px solid var(--border); border-radius: 12px; padding: 14px; text-align:center; }
-    .kpi .num{ font-size:1.25rem; font-weight:800; letter-spacing:.2px; }
-    .kpi .lbl{ color:var(--muted); font-size:.85rem; margin-top: 2px; }
-
-    .skills{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
-    .chip{ border:1px solid var(--border); background:#0c0f18; color:#dff9ff; padding:6px 10px; border-radius:999px; font-size:.9rem; }
-
-    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 16px; }
-    .btn{ appearance:none; border:none; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding: 10px 14px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow: var(--shadow); border:1px solid rgba(0,188,212,.25); }
-    .btn.primary{ background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0a0a0a; }
-    .btn.ghost{ background: rgba(0,188,212,.10); color:#dff9ff; }
-
-    .list{ list-style:none; margin:0; padding:0; display:grid; gap:12px; }
-    .list li{ background: var(--panel-2); border:1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
-
-    footer{ border-top:1px solid var(--border); background: var(--panel); color:var(--muted); }
-    .footer-inner{ padding: 18px 20px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
-    .footer-inner a{ color: var(--brand-2); text-decoration:none; }
+    body{ margin:0; font-family:Inter,system-ui,sans-serif; background:radial-gradient(1200px 800px at 110% -10%,rgba(0,188,212,.08),transparent 60%) no-repeat, var(--bg); color:var(--text); line-height:1.6;}
+    header{ background: linear-gradient(180deg, rgba(0,188,212,.10), rgba(0,188,212,0) 60%), var(--panel); border-bottom:1px solid var(--border);}
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px;}
+    .branding{ display:flex; align-items:center; gap:14px; padding:26px 0 10px;}
+    .avatar{ width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:grid; place-items:center; color:#0a0a0a; font-weight:800; box-shadow:var(--shadow);}
+    .title h1{ margin:0; font-size:clamp(1.7rem,1.3rem+1.2vw,2.4rem);}
+    .title p{ margin:.25rem 0 0; color:var(--muted);}
+    nav.primary{ margin:12px 0 20px; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:10px; display:flex; gap:8px; flex-wrap:wrap;}
+    nav.primary a{ text-decoration:none; color:var(--text); padding:10px 14px; border-radius:10px; font-weight:600;}
+    nav.primary a[aria-current="page"], nav.primary a:hover{ background:rgba(0,188,212,.12); color:#dff9ff;}
+    main{ padding:28px 0 64px;}
+    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;}
+    footer{ border-top:1px solid var(--border); background:var(--panel); color:var(--muted);}
+    .footer-inner{ padding:18px 20px; text-align:center;}
+    .footer-inner a{ color:var(--brand-2);}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
   <header>
     <div class="container">
-      <div class="branding" role="banner">
-        <div class="avatar" aria-hidden="true">DB</div>
+      <div class="branding">
+        <div class="avatar">DB</div>
         <div class="title">
           <h1>Davide Battilocchio</h1>
           <p>Cybersecurity Professional • SOC / Incident Response • Web Application Defense</p>
         </div>
       </div>
-
-      <nav class="primary" aria-label="Primary">
+      <nav class="primary">
         <a href="index.html" aria-current="page">About Me</a>
         <a href="projects.html">Projects</a>
         <a href="certifications.html">Certifications</a>
@@ -101,87 +47,18 @@
     </div>
   </header>
 
-  <main id="main" class="container" tabindex="-1">
-    <div class="grid grid-2">
-      <!-- Left: Hero/About -->
-      <section class="panel hero" aria-labelledby="about">
-        <h2 id="about">About Me</h2>
-        <p class="subtitle">Master’s in Cybersecurity • 2+ years SOC & Security Analyst experience</p>
-        <p>
-          I’m a cybersecurity professional focused on SOC operations, incident response, and SIEM engineering. I’ve worked with Splunk, QRadar, Microsoft Sentinel, and Chronicle to monitor threats, investigate incidents, and harden defenses. I also sharpen skills through HackTheBox, TryHackMe, and malware analysis labs.
-        </p>
-        <div class="skills" aria-label="Core tools & focus">
-          <span class="chip">Splunk</span>
-          <span class="chip">QRadar</span>
-          <span class="chip">Chronicle</span>
-          <span class="chip">Microsoft Sentinel</span>
-          <span class="chip">EDR (CrowdStrike)</span>
-          <span class="chip">Wireshark</span>
-          <span class="chip">SOAR Playbooks</span>
-        </div>
-        <div class="cta">
-          <a class="btn primary" href="projects.html">View Projects</a>
-          <a class="btn ghost" href="certifications.html">See Certifications</a>
-        </div>
-        <div class="kpis" aria-label="Highlights">
-          <div class="kpi"><div class="num">2+ yrs</div><div class="lbl">SOC/IR</div></div>
-          <div class="kpi"><div class="num">24/7</div><div class="lbl">Shift Ops</div></div>
-          <div class="kpi"><div class="num">Security+</div><div class="lbl">Certified</div></div>
-          <div class="kpi"><div class="num">M.S.</div><div class="lbl">Cybersecurity</div></div>
-        </div>
-      </section>
-
-      <!-- Right: Quick Links / Wallet / Contact -->
-      <aside class="panel" aria-labelledby="quick-links">
-        <h2 id="quick-links">Quick Links</h2>
-        <ul class="list" role="list">
-          <li>
-            <strong>IQ4 Skills Wallet</strong><br>
-            <a href="https://wallet.iq4.com/user/dbattilocchio@saintpeters.edu" target="_blank" rel="noopener noreferrer">View verified badges →</a>
-          </li>
-          <li>
-            <strong>Resume</strong><br>
-            <a href="#" aria-disabled="true" title="Add your resume URL">Add your resume link</a>
-          </li>
-          <li>
-            <strong>LinkedIn</strong><br>
-            <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn →</a>
-          </li>
-          <li>
-            <strong>Contact</strong><br>
-            <a href="contact.html">Get in touch →</a>
-          </li>
-        </ul>
-      </aside>
-    </div>
-
-    <!-- Recent / Featured Projects teaser -->
-    <section class="panel" aria-labelledby="featured">
-      <h2 id="featured">Featured Work</h2>
-      <p class="subtitle">A few projects that highlight investigations, detection content, and reporting.</p>
-      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-        <article class="panel" style="padding:16px">
-          <h3 style="margin:0 0 .25rem; font-size:1.05rem;">Ransomware Response Playbook</h3>
-          <p class="subtitle" style="margin:0">IR steps, Splunk searches, and containment checklist.</p>
-        </article>
-        <article class="panel" style="padding:16px">
-          <h3 style="margin:0 0 .25rem; font-size:1.05rem;">SOC Dashboards (Splunk)</h3>
-          <p class="subtitle" style="margin:0">KPIs, notable events triage, and drilldowns for faster MTTR.</p>
-        </article>
-        <article class="panel" style="padding:16px">
-          <h3 style="margin:0 0 .25rem; font-size:1.05rem;">Memory Forensics (Redline)</h3>
-          <p class="subtitle" style="margin:0">Standard/IOC collections and findings summary.</p>
-        </article>
-      </div>
+  <main class="container">
+    <section class="panel">
+      <h2>About Me</h2>
+      <p>I’m a cybersecurity professional with a Master’s degree in Cybersecurity and 2 years of hands-on experience as a SOC and Security Analyst.</p>
+      <p>I’ve worked with multiple SIEM platforms including Splunk, QRadar, Microsoft Sentinel, and Chronicle to monitor threats, investigate incidents, and strengthen defenses.</p>
+      <p>Beyond my professional roles, I’ve built practical skills through HackTheBox, TryHackMe, and malware analysis labs, sharpening my abilities in incident response and digital forensics.</p>
+      <p>I’m passionate about continuous learning and eager to contribute to a team where I can grow while helping protect critical systems and data.</p>
     </section>
-
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <span>© 2025 Davide Battilocchio</span>
-      <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </div>
+    <div class="footer-inner">© 2025 Davide Battilocchio • <a href="https://www.linkedin.com/in/davide-battilocchio-b537a1186/" target="_blank">LinkedIn</a></div>
   </footer>
 </body>
 </html>
